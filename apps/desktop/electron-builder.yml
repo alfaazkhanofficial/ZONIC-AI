@@ -1,0 +1,11 @@
+appId: dev.zonic.m4
+productName: ZONIC M4
+directories: { output: release }
+files: ["dist/**", "dist-electron/**", "build/icon.ico", "build/icon.png", "package.json"]
+extraResources:
+  - from: ../../backend/dist/zonic-backend
+    to: backend
+win:
+  icon: build/icon.ico
+  target: [{ target: nsis, arch: [x64] }]
+nsis: { installerIcon: build/icon.ico, uninstallerIcon: build/icon.ico, installerHeaderIcon: build/icon.ico, oneClick: false, allowToChangeInstallationDirectory: true, perMachine: false }

@@ -1,0 +1,39 @@
+{
+  "name": "zonic-m4-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ZONIC M4 — Windows AI desktop agent (Electron shell + React UI)",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k -n vite,electron \"vite\" \"npm run electron:dev\"",
+    "electron:dev": "wait-on tcp:5173 && npm run build:electron && cross-env NODE_ENV=development electron .",
+    "build": "tsc --noEmit && vite build",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit && tsc -p tsconfig.test.json",
+    "test": "vitest run",
+    "start": "npm run build && npm run build:electron && electron .",
+    "dist": "npm run build && npm run build:electron && electron-builder --win --x64"
+  },
+  "dependencies": {
+    "@react-three/fiber": "8.17.10",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.169.0",
+    "zustand": "4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.1",
+    "@types/three": "0.169.0",
+    "@vitejs/plugin-react": "4.3.3",
+    "concurrently": "9.0.1",
+    "cross-env": "7.0.3",
+    "electron": "33.2.0",
+    "electron-builder": "25.1.8",
+    "typescript": "5.6.3",
+    "vite": "5.4.10",
+    "vitest": "2.1.4",
+    "wait-on": "8.0.1"
+  }
+}
